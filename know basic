@@ -1,0 +1,17 @@
+(option to use vscode first in the terminal Enter mongosh)
+test> use codeio    //use keyword to use the database
+switched to db codeio
+
+codeio> show dbs    //show dbs for show the database
+admin    40.00 KiB
+config  108.00 KiB
+local    76.00 KiB
+
+codeio> db.createCollection("course")     // db means that current database. createCollection(_collection_name_)
+{ ok: 1 }
+
+codeio> show dbs
+admin    40.00 KiB
+codeio    8.00 KiB
+config  108.00 KiB
+local    76.00 KiB
