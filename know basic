@@ -1,4 +1,4 @@
-😊(option to use vscode first in the terminal Enter mongosh)
+😊(option to use vscode first in the terminal Enter mongosh)😎😎😎
 test> use codeio    //use keyword to use the database
 switched to db codeio
 
@@ -15,7 +15,7 @@ admin    40.00 KiB
 codeio    8.00 KiB
 config  108.00 KiB
 local    76.00 KiB
-
+🤔🤔
 codeio> db.couse.drop                         // these show error  drop is method 
 [Function: drop] AsyncFunction {
   apiVersions: [ 1, Infinity ],
@@ -43,3 +43,58 @@ show dbs
 db.createCollection("course")
 db.course.drop()
 db.dropDatabase()
+💕💕💕💕💕
+
+codeio> db.course.insertOne({name: "DSA", videos: 50, duration: 28.5})         //insertOne() mean that one document add to collection  {..} 👈document ,contain { Field : values,....}
+{
+  acknowledged: true,
+  insertedId: ObjectId('68d2cac1488f2d29f7cebea4')
+}
+
+codeio> db.course.find()                           // find() show all document in the collection
+[
+  {
+    _id: ObjectId('68d2cac1488f2d29f7cebea4'),
+    name: 'DSA',
+    videos: 50,
+    duration: 28.5
+  }
+]
+
+
+codeio> db.course.insertMany([{name:"JAVA",videos: 38,duration:10.5},{name:"C++",videos:36,duration:10.51}])   👌👌 // insertMany() this same for insertOne ,But differ is use [then{...},{..},..] 👈 insert many document in a collection
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68d2cbdb488f2d29f7cebea7'),
+    '1': ObjectId('68d2cbdb488f2d29f7cebea8')
+  }
+}
+
+codeio> db.course.find()
+[
+  {
+    _id: ObjectId('68d2cac1488f2d29f7cebea4'),
+    name: 'DSA',
+    videos: 50,
+    duration: 28.5
+  },
+  {
+    _id: ObjectId('68d2cbdb488f2d29f7cebea7'),
+    name: 'JAVA',
+    videos: 38,
+    duration: 10.5
+  },
+  {
+    _id: ObjectId('68d2cbdb488f2d29f7cebea8'),
+    name: 'C++',
+    videos: 36,
+    duration: 10.51
+  }
+]
+
+👇👇👇
+db.course.find()
+db.course.insertOne({name: "DSA", videos: 50, duration: 28.5})
+db.course.insertMany([{name:"JAVA",videos: 38,duration:10.5},{name:"C++",videos:36,duration:10.51}])
+💕💕💕💕💕
