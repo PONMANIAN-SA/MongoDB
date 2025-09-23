@@ -1,7 +1,7 @@
 😊(option to use vscode first in the terminal Enter mongosh)😎😎😎
 test> use codeio    //use keyword to use the database
 switched to db codeio
-
+✌️✌️✌️
 codeio> show dbs    //show dbs for show the database
 admin    40.00 KiB
 config  108.00 KiB
@@ -9,7 +9,7 @@ local    76.00 KiB
 
 codeio> db.createCollection("course")     // db means that current database. createCollection(_collection_name_)
 { ok: 1 }
-
+💚💚💚
 codeio> show dbs
 admin    40.00 KiB
 codeio    8.00 KiB
@@ -31,7 +31,7 @@ codeio> db.couse.drop                         // these show error  drop is metho
   newShellCommandCompleter: undefined,
   help: [Function (anonymous)] Help
 }
-
+❤️‍🔥❤️‍🔥❤️‍🔥
 codeio> db.course.drop()                   // this correct 
 true
 
@@ -98,3 +98,18 @@ db.course.find()
 db.course.insertOne({name: "DSA", videos: 50, duration: 28.5})
 db.course.insertMany([{name:"JAVA",videos: 38,duration:10.5},{name:"C++",videos:36,duration:10.51}])
 💕💕💕💕💕
+DATA TYPES😉😉😉
+codeio> db.course.insertOne(
+{
+name: "React",                                 //String
+videas: 35,                                    //value part Enter integer
+duration: 18.3,                                //Enter float or double
+completed: false,                              // Boolean
+Published Date: new Date("2025-07-11"),        //Even data also you leave Date()inside empty show current date & time
+instructors: [ "Goms", "siva"],                //Even Array
+relatedCourses :{                              //Even also another document
+name:"js",
+videos:36,
+duration:11}
+}
+)💕💕💕💕💕
