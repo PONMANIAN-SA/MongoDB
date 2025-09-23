@@ -1,4 +1,4 @@
-(option to use vscode first in the terminal Enter mongosh)
+😊(option to use vscode first in the terminal Enter mongosh)
 test> use codeio    //use keyword to use the database
 switched to db codeio
 
@@ -15,3 +15,31 @@ admin    40.00 KiB
 codeio    8.00 KiB
 config  108.00 KiB
 local    76.00 KiB
+
+codeio> db.couse.drop                         // these show error  drop is method 
+[Function: drop] AsyncFunction {
+  apiVersions: [ 1, Infinity ],
+  returnsPromise: true,
+  serverVersions: [ '0.0.0', '999.999.999' ],
+  topologies: [ 'ReplSet', 'Sharded', 'LoadBalanced', 'Standalone' ],
+  returnType: { type: 'unknown', attributes: {} },
+  deprecated: false,
+  platforms: [ 'Compass', 'Browser', 'CLI' ],
+  isDirectShellCommand: false,
+  acceptsRawInput: false,
+  shellCommandCompleter: undefined,
+  newShellCommandCompleter: undefined,
+  help: [Function (anonymous)] Help
+}
+
+codeio> db.course.drop()                   // this correct 
+true
+
+codeio> db.dropDatabase()                // same for Database
+{ ok: 1, dropped: 'codeio' }
+👇👇👇👇👇
+use codeio
+show dbs
+db.createCollection("course")
+db.course.drop()
+db.dropDatabase()
