@@ -36,7 +36,7 @@ codeio> db.course.find({duration:10.5},{name:true,duration:true,_id:false})     
     duration: 10.5 
   }
 ]
-👇👇👇
+👇👇👇(Recap)
 db.course.find({name:"DSA",duration:10.5})  or  db.course.find({duration:10.5}) 
  db.course.find({duration:10.5},{name:true,duration:true,_id:false})
 💕💕💕
@@ -105,7 +105,7 @@ codeio> db.course.find({},{name:true,duration:true,_id:false}).sort({duration: 1
   { name: 'Mongo DB', duration: 2.5 },
   { name: 'JAVA', duration: 10.5 }
 ]
-👇👇👇👇👇
+👇👇👇👇👇(Recap)
 codeio> db.course.find().sort({duration:1})
 codeio> db.course.find({},{name:true,duration:true,_id:false}).sort({duration: 1})
 codeio> db.course.find({},{name:true,duration:true,_id:false}).sort({duration: 1}).limit(2)
