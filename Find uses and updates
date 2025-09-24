@@ -110,3 +110,44 @@ codeio> db.course.find().sort({duration:1})
 codeio> db.course.find({},{name:true,duration:true,_id:false}).sort({duration: 1})
 codeio> db.course.find({},{name:true,duration:true,_id:false}).sort({duration: 1}).limit(2)
 💕💕💕💕💕
+UPDATES 
+codeio> db.course.updateOne({name:"React"},{$set:{name:"REACT"}})                      //updateOne()👈 for update (filter,updateone) $set
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+codeio> db.course.find({},{name:true,_id:false})
+[
+  { name: 'DSA' },
+  { name: 'JAVA' },
+  { name: 'C++' },
+  { name: 'REACT' },
+  { name: 'Mongo DB' },
+  { name: 'c++' }
+]
+
+codeio> db.course.updateOne({_id: ObjectId('68d2d5e15ed1a5518ccebea4')},{$set:{name:"React"}})       //💚Filter can give Fields or id can update
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+codeio> db.course.find({},{name:true,_id:false})
+[
+  { name: 'DSA' },
+  { name: 'JAVA' },
+  { name: 'C++' },
+  { name: 'React' },
+  { name: 'Mongo DB' },
+  { name: 'c++' }
+]
+👇👇👇
+codeio> db.course.updateOne({name:"React"},{$set:{name:"REACT"}})
+codeio> db.course.updateOne({_id: ObjectId('68d2d5e15ed1a5518ccebea4')},{$set:{name:"React"}})
+💕💕💕
