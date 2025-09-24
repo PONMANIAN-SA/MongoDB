@@ -1,0 +1,112 @@
+SEARCH METHODS 🔍🔍🔍
+codeio> db.course.find({name:"DSA"})                                   //find what you need field enter inside the parentheses
+    _id: ObjectId('68d2cac1488f2d29f7cebea4'),
+    name: 'DSA',
+    videos: 50,
+    duration: 28.5
+  }
+]
+
+codeio> db.course.find({name:"DSA",duration:10.5})    
+
+codeio> db.course.find({duration:10.5})
+[
+  {
+    _id: ObjectId('68d2cbdb488f2d29f7cebea7'),
+    name: 'JAVA',
+    videos: 38,
+    duration: 10.5
+  },
+  {
+    _id: ObjectId('68d4182cc5e0eb2fcbcebea5'),
+    name: 'c++',
+    videos: 36,
+    duration: 10.5
+  }
+]
+
+codeio> db.course.find({duration:10.5},{name:true,duration:true,_id:false})          //db.collection.find(query, projection) 👈👈this syntax
+[ 
+  {                                                                                  //You see in the projection give true or false these only show 
+    name: 'JAVA', 
+    duration: 10.5
+  }, 
+  {  
+    name: 'c++', 
+    duration: 10.5 
+  }
+]
+👇👇👇
+db.course.find({name:"DSA",duration:10.5})  or  db.course.find({duration:10.5}) 
+ db.course.find({duration:10.5},{name:true,duration:true,_id:false})
+💕💕💕
+
+codeio> db.course.find().sort({duration:1})                                     //sort() sort either ascending(1)✌️ or descending order(-1)✌️
+[
+  {
+    _id: ObjectId('68d2d6615ed1a5518ccebea5'),
+    name: 'Mongo DB',
+    videos: 15,
+    duration: 2.5
+  },
+  {
+    _id: ObjectId('68d2cbdb488f2d29f7cebea7'),
+    name: 'JAVA',
+    videos: 38,
+    duration: 10.5
+  },
+  {
+    _id: ObjectId('68d4182cc5e0eb2fcbcebea5'),
+    name: 'c++',
+    videos: 36,
+    duration: 10.5
+  },
+  {
+    _id: ObjectId('68d2cbdb488f2d29f7cebea8'),
+    name: 'C++',
+    videos: 36,
+    duration: 10.51
+  },
+  {
+    _id: ObjectId('68d2d5e15ed1a5518ccebea4'),
+    name: 'React',
+    videos: 35,
+    duration: 18.3,
+    completed: false,
+    PublishedDate: ISODate('2025-09-23T00:00:00.000Z'),
+    instructors: [ 'Goms', 'Bob' ],
+    relatedCourses: { name: 'js', videos: 36, duration: 11 }
+  },
+  {
+    _id: ObjectId('68d2cac1488f2d29f7cebea4'),
+    name: 'DSA',
+    videos: 50,
+    duration: 28.5
+  },
+  {
+    _id: ObjectId('68d4180ec5e0eb2fcbcebea4'),
+    name: 'c++',
+    videos: 36,
+    duration: 36
+  }
+]
+🤔🤔🤔
+codeio> db.course.find({},{name:true,duration:true,_id:false}).sort({duration: 1})              //even use projection but not mantory to give query👾
+[
+  { name: 'Mongo DB', duration: 2.5 },
+  { name: 'JAVA', duration: 10.5 },
+  { name: 'c++', duration: 10.5 },
+  { name: 'C++', duration: 10.51 },
+  { name: 'React', duration: 18.3 },
+  { name: 'DSA', duration: 28.5 }
+🧐🧐🧐
+codeio> db.course.find({},{name:true,duration:true,_id:false}).sort({duration: 1}).limit(2)        //limit give top what No. given to that 
+[
+  { name: 'Mongo DB', duration: 2.5 },
+  { name: 'JAVA', duration: 10.5 }
+]
+👇👇👇👇👇
+codeio> db.course.find().sort({duration:1})
+codeio> db.course.find({},{name:true,duration:true,_id:false}).sort({duration: 1})
+codeio> db.course.find({},{name:true,duration:true,_id:false}).sort({duration: 1}).limit(2)
+💕💕💕💕💕
