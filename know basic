@@ -37,7 +37,7 @@ true
 
 codeio> db.dropDatabase()                // same for Database
 { ok: 1, dropped: 'codeio' }
-👇👇👇👇👇
+👇👇👇👇👇(Recap)
 use codeio
 show dbs
 db.createCollection("course")
@@ -93,7 +93,7 @@ codeio> db.course.find()
   }
 ]
 
-👇👇👇
+👇👇👇(Recap)
 db.course.find()
 db.course.insertOne({name: "DSA", videos: 50, duration: 28.5})
 db.course.insertMany([{name:"JAVA",videos: 38,duration:10.5},{name:"C++",videos:36,duration:10.51}])
