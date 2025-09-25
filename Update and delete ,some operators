@@ -1,0 +1,164 @@
+Continue of updates
+😉😉😉😉😉
+codeio> db.course.updateMany({duration:10.5},{$set:{videos:1000}})                    //set mean that set he field and value
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+codeio> db.course.find({duration:10.5},{duration:true,videos:true})                 //see the output
+[
+  {
+    _id: ObjectId('68d2cbdb488f2d29f7cebea7'),
+    videos: 1000,
+    duration: 10.5
+  },
+  {
+    _id: ObjectId('68d4182cc5e0eb2fcbcebea5'),
+    videos: 1000,
+    duration: 10.5
+  }
+]🫡🫡🫡
+codeio> db.course.updateMany({duration:10.5},{$inc:{videos:10}})                 //$inc means increase value
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 2,
+  modifiedCount: 2,
+  upsertedCount: 0
+}
+codeio> db.course.find({duration:10.5},{duration:true,videos:true,_id:false})    //that ouput
+[ { videos: 1010, duration: 10.5 }, { videos: 1010, duration: 10.5 } ]
+💥💥💥
+codeio> db.course.updateMany({name:"spring", duration:6.7}, {$set:{name:"Spring Boot", duration: 6.7,videos:50}})  //update section no fields pair so show 0 
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+
+codeio> db.course.updateMany({name:"spring", duration:6.7}, {$set:{name:"Spring Boot", duration: 6.7,videos:50}},{upsert:true}) 
+{                                                                            //incase use upsert means no match pair that create the what in the set 
+  acknowledged: true, 
+  insertedId: ObjectId('68d5792c74d91a0aa6af9f6c'),
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 1
+}
+codeio> db.course.find({name:"Spring Boot"})                 //see that
+[
+  {
+    _id: ObjectId('68d5792c74d91a0aa6af9f6c'),
+    name: 'Spring Boot',
+    duration: 6.7,
+    videos: 50
+  }
+]
+👇👇👇(Recap)
+db.course.updateMany({duration:10.5},{$inc:{videos:10}})
+db.course.updateMany({name:"spring", duration:6.7}, {$set:{name:"Spring Boot", duration: 6.7,videos:50}},{upsert:true}) 
+💕💕💕
+DELETE 
+codeio> db.course.insertMany([{name:"delete",videos:5},{name:"delete",videos:15},{name:"delete",videos:20}])  //sample for perform delete opertion
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68d57a79a2327a59e0cebea4'),
+    '1': ObjectId('68d57a79a2327a59e0cebea5'),
+    '2': ObjectId('68d57a79a2327a59e0cebea6')
+  }
+}
+codeio> db.course.find({name:"delete"})
+[
+  {
+    _id: ObjectId('68d57a79a2327a59e0cebea4'),
+    name: 'delete',
+    videos: 5
+  },
+  {
+    _id: ObjectId('68d57a79a2327a59e0cebea5'),
+    name: 'delete',
+    videos: 15
+  },
+  {
+    _id: ObjectId('68d57a79a2327a59e0cebea6'),
+    name: 'delete',
+    videos: 20
+  }
+]
+codeio> db.course.deleteOne({name:"delete"})     //deleteOne() delete one 
+{ acknowledged: true, deletedCount: 1 }
+codeio> db.course.find({name:"delete"})        //these output
+[
+  {
+    _id: ObjectId('68d57a79a2327a59e0cebea5'),
+    name: 'delete',
+    videos: 15
+  },
+  {
+    _id: ObjectId('68d57a79a2327a59e0cebea6'),
+    name: 'delete',
+    videos: 20
+  }
+]
+codeio> db.course.deleteMany({name:"delete"})       //deleteMany() for delete more than two 
+{ acknowledged: true, deletedCount: 2 }             //these are output
+codeio> db.course.find({name:"delete"})            👉👉👉(Recap) =>db.course.deleteOne({name:"delete"}) || db.course.deleteMany({name:"delete"})💕💕💕
+
+OPERATORS💥💥💥
+codeio> db.course.find({videos:{$gt:30}},{_id:false,name:true,videos:true})   //$gt use for Greater than💚
+[
+  { name: 'DSA', videos: 50 },
+  { name: 'JAVA', videos: 1010 },
+  { name: 'C++', videos: 36 },
+  { name: 'React', videos: 35 },
+  { name: 'c++', videos: 1010 },
+  { name: 'Spring Boot', videos: 50 }
+]
+codeio> db.course.find({videos:{$lt:30}},{_id:false,name:true,videos:true})    //$lt mean Less than🧡
+[ { name: 'Mongo DB', videos: 15 } ]
+codeio> db.course.find({videos:{$lte:30}},{_id:false,name:true,videos:true})   //$lte mean Less than equal to💛
+[ { name: 'Mongo DB', videos: 15 } ]
+codeio> db.course.find({videos:{$gte:30}},{_id:false,name:true,videos:true})   //$gte mean Less than equal to💜
+
+[
+  { name: 'DSA', videos: 50 },
+  { name: 'JAVA', videos: 1010 },
+  { name: 'C++', videos: 36 },
+  { name: 'React', videos: 35 },
+  { name: 'c++', videos: 1010 },
+  { name: 'Spring Boot', videos: 50 }
+]
+
+
+codeio> db.course.find({name:{$in:["React","DSA"]}})           //in means that what inside the [] that only show🩵
+[
+  {
+    _id: ObjectId('68d2cac1488f2d29f7cebea4'),
+    name: 'DSA',
+    videos: 50,
+    duration: 28.5,
+    completed: true
+  },
+  {
+    _id: ObjectId('68d2d5e15ed1a5518ccebea4'),
+    name: 'React',
+    videos: 35,
+    duration: 18.3,
+    PublishedDate: ISODate('2025-09-23T00:00:00.000Z'),
+    instructors: [ 'Goms', 'Bob' ],
+    relatedCourses: { name: 'js', videos: 36, duration: 11 },
+    completed: true
+  }
+]
+👇👇👇(Recap)
+db.course.find({videos:{$gt:30}})
+db.course.find({videos:{$lt:30}})
+db.course.find({videos:{$gte:30}})
+db.course.find({videos:{$lte:30}})
+db.course.find({name:{$in:["React","DSA"]}})
+💕💕💕
