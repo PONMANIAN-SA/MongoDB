@@ -1,0 +1,180 @@
+Schema Validation👽👽👽 and Indexes
+codeio> db.createCollection(                                                                                   //Code start from this to 💖
+"orders", {												                                                	//name of the collection
+ 	validator: { 								                                      	//Syntax💥
+ 		 $jsonSchema :{ 							                                    //This also Syntax
+   			 bsonType: "object",					                              	//This store mens bsonType store objects🧡
+ 			required: ["item", "price", "customer_id"],                    //object store these all💚
+ 			properties:
+ 				   {
+ 					item: {                                             //item tell store string  ☠️
+ 					bsonType: "string",
+ 					description:"This has item name - required"
+ 					},
+ 					price:{                                         //Same for price store number🤨
+ 					bsonType: "number",
+ 					description:"Price - number -required"
+ 					},
+ 					customer_id :{                                   //Same for this ,object id😌
+ 					bsonType: "objectId",
+ 					description:"reference to customer id"
+ 					}
+ 				    }
+ 			      }
+ 		}
+ 	}
+
+)                                                                                                             //Code End✍️
+
+codeio> db.customer.find()                                      //another collection we join to orders collection👾
+[
+  {
+    _id: ObjectId('68d8018c9743ab97accebea4'),
+    name: 'Goms',
+    amount: 250
+  },
+  {
+    _id: ObjectId('68d8018c9743ab97accebea5'),
+    name: 'Goms',
+    amount: 400
+  },
+  {
+    _id: ObjectId('68d8018c9743ab97accebea6'),
+    name: 'Siva',
+    amount: 100
+  },
+  {
+    _id: ObjectId('68d8018c9743ab97accebea7'),
+    name: 'Siva',
+    amount: 10
+  },
+  {
+    _id: ObjectId('68d8018c9743ab97accebea8'),
+    name: 'Goms',
+    amount: 150
+  }
+]
+
+codeio> db.orders.insertOne({item:"DM Silk",price:250,customer_id:ObjectObjectId('68d8018c9743ab97accebea4')})        //item store string ,price store number ,customer_id store object_id of another collection🫀
+{
+  acknowledged: true,
+  insertedId: ObjectId('68d80ec306f8f6c0d6cebea4')
+}
+codeio>  db.orders.insertOne({item:"Perk",price:400,customer_id: ObjectId('68d8018c9743ab97accebea5')})          //Same like insert🤩
+{
+  acknowledged: true,
+  insertedId: ObjectId('68d80f5c06f8f6c0d6cebea5')
+}
+codeio>
+...  db.orders.insertOne({item:"Munch",price:10,customer_id: ObjectId('68d8018c9743ab97accebea7')})            //Same like insert🤩
+...
+{
+  acknowledged: true,
+  insertedId: ObjectId('68d80fed06f8f6c0d6cebea6')
+}
+codeio> db.orders.find()                                                                       //Now you see the orders collection what show 🔥
+[
+  {
+    _id: ObjectId('68d80ec306f8f6c0d6cebea4'),
+    item: 'DM Silk',
+    price: 250,
+    customer_id: ObjectId('68d8018c9743ab97accebea4')
+  },
+  {
+    _id: ObjectId('68d80f5c06f8f6c0d6cebea5'),
+    item: 'Perk',
+    price: 400,
+    customer_id: ObjectId('68d8018c9743ab97accebea5')
+  },
+  {
+    _id: ObjectId('68d80fed06f8f6c0d6cebea6'),
+    item: 'Munch',
+    price: 10,
+    customer_id: ObjectId('68d8018c9743ab97accebea7')
+  }
+]
+
+codeio> db.orders.aggregate([                                                       //$lookup used to show what are connected😘
+...   {
+...     $lookup: {								
+...       from: "customer",						        	//This collection name 🥰
+...       localField: "customer_id",						//In this collection what name to store it ,that collection object_id😍
+...       foreignField: "_id",						    	//Current collection name of objectId😀
+...       as: "customer"                                                        //what name to display it😎
+...     }
+...   }
+... ])
+[ 										//These are outputs😋
+  {
+    _id: ObjectId('68d80ec306f8f6c0d6cebea4'),
+    item: 'DM Silk',
+    price: 250,
+    customer_id: ObjectId('68d8018c9743ab97accebea4'),
+    customer: [
+      {
+        _id: ObjectId('68d8018c9743ab97accebea4'),
+        name: 'Goms',
+        amount: 250
+      }
+    ]
+  },
+  {
+    _id: ObjectId('68d80f5c06f8f6c0d6cebea5'),
+    item: 'Perk',
+    price: 400,
+    customer_id: ObjectId('68d8018c9743ab97accebea5'),
+    customer: [
+      {
+        _id: ObjectId('68d8018c9743ab97accebea5'),
+        name: 'Goms',
+        amount: 400
+      }
+    ]
+  },
+  {
+    _id: ObjectId('68d80fed06f8f6c0d6cebea6'),
+    item: 'Munch',
+    price: 10,
+    customer_id: ObjectId('68d8018c9743ab97accebea7'),
+    customer: [
+      {
+        _id: ObjectId('68d8018c9743ab97accebea7'),
+        name: 'Siva',
+        amount: 10
+      }
+    ]
+  }
+]
+👇👇👇👇👇(Recap)
+codeio> db.createCollection(                                                                                  
+"orders", {validator: {  $jsonSchema :{ bsonType: "object",	required: ["item", "price", "customer_id"],        properties:{	item: {  bsonType: "string",  	description:"This has item name - required"},  price:{                     	bsonType: "number",	description:"Price - number -required"},	customer_id :{  bsonType: "objectId",	description:"reference to customer id"}  }  }	}   } )
+
+db.orders.insertOne({item:"DM Silk",price:250,customer_id:ObjectObjectId('68d8018c9743ab97accebea4')})
+db.orders.insertOne({item:"Perk",price:400,customer_id: ObjectId('68d8018c9743ab97accebea5')})
+db.orders.insertOne({item:"Munch",price:10,customer_id: ObjectId('68d8018c9743ab97accebea7')})
+
+ db.orders.aggregate([ {  $lookup: { from: "customer", localField: "customer_id", foreignField: "_id", as: "customer" } ] )
+💕💕💕💕💕
+
+Index
+codeio> db.course.createIndex({name:1})                         //What field you create index🧡
+name_1
+codeio> db.course.getIndexes({name:1})                         //These show indexes .  _id_ is the default index💚
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { name: 1 }, name: 'name_1' }
+]
+
+codeio>  db.course.createIndex({name:1,duration:-1})           //you can create this also💜
+name_1_duration_-1
+codeio> db.course.getIndexes({name:1})                        //And see the result🤎
+[
+  { v: 2, key: { _id: 1 }, name: '_id_' },
+  { v: 2, key: { name: 1 }, name: 'name_1' },
+  { v: 2, key: { name: 1, duration: -1 }, name: 'name_1_duration_-1' }
+]
+👇👇👇👇(Recap)
+db.course.createIndex({name:1})
+db.course.createIndex({name:1,duration:-1})
+db.course.getIndexes({name:1})
+💕💕💕💕
