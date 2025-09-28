@@ -1,0 +1,170 @@
+LOGICAL OPERATORS 😉😉😉
+codeio> db.course.find({ $and:[{videos:35},{name:"React"}]})         //$and is syntax write like within square bracket placed it, it work like And operator👈🩵
+[
+  {
+    _id: ObjectId('68d2d5e15ed1a5518ccebea4'),
+    name: 'React',
+    videos: 35,
+    duration: 18.3,
+    PublishedDate: ISODate('2025-09-23T00:00:00.000Z'),
+    instructors: [ 'Goms', 'Bob' ],
+    relatedCourses: { name: 'js', videos: 36, duration: 11 },
+    completed: true
+  }
+]
+ 
+codeio> db.course.find({ $or:[{videos:35},{name:"React"}]})         //$or ,Same for OR operator👈🧡
+[
+  {
+    _id: ObjectId('68d2cac1488f2d29f7cebea4'),
+    name: 'DSA',
+    videos: 35,
+    duration: 28.5,
+    completed: true
+  },
+  {
+    _id: ObjectId('68d2d5e15ed1a5518ccebea4'),
+    name: 'React',
+    videos: 35,
+    duration: 18.3,
+    PublishedDate: ISODate('2025-09-23T00:00:00.000Z'),
+    instructors: [ 'Goms', 'Bob' ],
+    relatedCourses: { name: 'js', videos: 36, duration: 11 },
+    completed: true
+  }
+]
+
+codeio> db.course.find({ $nor:[{videos:35},{name:"React"}]})       //And also same for NOR operator👈💚
+[
+  {
+    _id: ObjectId('68d2cbdb488f2d29f7cebea7'),
+    name: 'JAVA',
+    videos: 50,
+    duration: 10.5,
+    completed: true
+  },
+  {
+    _id: ObjectId('68d2cbdb488f2d29f7cebea8'),
+    name: 'C++',
+    videos: 36,
+    duration: 10.51,
+    completed: true
+  },
+  {
+    _id: ObjectId('68d2d6615ed1a5518ccebea5'),
+    name: 'Mongo DB',
+    videos: 15,
+    duration: 2.5,
+    completed: true
+  },
+  {
+    _id: ObjectId('68d4182cc5e0eb2fcbcebea5'),
+    name: 'c++',
+    videos: 50,
+    duration: 10.5,
+    completed: true
+  },
+  {
+    _id: ObjectId('68d5792c74d91a0aa6af9f6c'),
+    name: 'Spring Boot',
+    duration: 6.7,
+    videos: 50
+  }
+]
+
+👇👇👇👇👇(Recap)
+ db.course.find({ $and:[{videos:35},{name:"React"}]})
+db.course.find({ $or:[{videos:35},{name:"React"}]})
+db.course.find({ $nor:[{videos:35},{name:"React"}]})
+💕💕💕💕💕
+
+ARRAY OPRATOR💥💥💥
+codeio> db.course.updateOne({name:"React"},{$push:{instructors:"Goms"}})                   //If you insert element in array ,you can use the following operators. $push operator mean that insert element in array🫀
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+
+codeio> db.course.find({name:"React"})
+[
+  {
+    _id: ObjectId('68d2d5e15ed1a5518ccebea4'),
+    name: 'React',
+    videos: 35,
+    duration: 18.3,
+    PublishedDate: ISODate('2025-09-23T00:00:00.000Z'),
+    instructors: [ 'Goms', 'Bob', 'Goms' ],
+    relatedCourses: { name: 'js', videos: 36, duration: 11 },
+    completed: true
+  }
+]
+
+codeio> db.course.updateOne({name:"React"},{$addToSet:{instructors:"Goms"}})          //$addToSet means that yis also insert but only difference is it doesn't insert duplicate🩵
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 0,                              //you can see no modified👈
+  upsertedCount: 0
+}
+codeio> db.course.updateOne({name:"React"},{$addToSet:{instructors:"Codeio"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,                            //This case no duplicate ,so insert it show modifiedcount =1👈
+  upsertedCount: 0
+}
+
+codeio> db.course.find({name:"React"})                                  
+[
+  {
+    _id: ObjectId('68d2d5e15ed1a5518ccebea4'),
+    name: 'React',
+    videos: 35,
+    duration: 18.3,
+    PublishedDate: ISODate('2025-09-23T00:00:00.000Z'),
+    instructors: [ 'Goms', 'Bob', 'Goms', 'Codeio' ],
+    relatedCourses: { name: 'js', videos: 36, duration: 11 },
+    completed: true
+  }
+]
+
+codeio> db.course.updateOne({name:"React"},{$pull:{instructors:"Codeio"}})                //$pull means that delete element 💜
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+codeio> db.course.updateOne({name:"React"},{$pop:{instructors:-1}})                    //$pop use can delete with elements name or give -1 delete 1'st element This opposite is 1 delete last element🤎
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+codeio> db.course.find({name:"React"})                                  
+[
+  {
+    _id: ObjectId('68d2d5e15ed1a5518ccebea4'),
+    name: 'React',
+    videos: 35,
+    duration: 18.3,
+    PublishedDate: ISODate('2025-09-23T00:00:00.000Z'),
+    instructors: [ 'Bob', 'Goms' ],
+    relatedCourses: { name: 'js', videos: 36, duration: 11 },
+    completed: true
+  }
+]
+👇👇👇👇(Recap)
+codeio> db.course.updateOne({name:"React"},{$push:{instructors:"Goms"}})
+db.course.updateOne({name:"React"},{$addToSet:{instructors:"Goms"}})
+db.course.updateOne({name:"React"},{$pull:{instructors:"Codeio"}})
+db.course.updateOne({name:"React"},{$pop:{instructors:-1}})
+💕💕💕💕
